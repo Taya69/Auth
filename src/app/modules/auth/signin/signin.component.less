@@ -1,0 +1,92 @@
+@import "../../../../styles.less";
+
+@media (max-width: 500px) {
+    .form {width: 300px;}
+  }
+@media (min-width: 501px) {
+    .form {width: 500px;}
+  }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    .header {
+        align-self: center;
+    }
+
+    .foot-buttons {
+        align-self: flex-end;
+    }
+
+    .row {
+        height: 70px;
+    }
+
+    .input-icons i {
+        position: absolute;
+    }
+      
+    .icon-forward {
+        padding: 10px;
+        min-width: 40px;
+    }
+
+    .icon-info {
+        padding-top: 5px;
+        right: 20px;
+        font-size: 11px;
+    }
+
+    .icon-eye {
+        padding: 11px;
+        right: 30px;
+    }
+      
+    .input-field { 
+        text-align: start;
+        padding-left: 30px;
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;  
+            position: absolute;
+            z-index: 1;
+            font-family: martians;
+            font-weight: normal;
+          }
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
+
+    .incorrect-password {
+        min-height: 60px;
+        background-color: antiquewhite;
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+        left: 0px;        
+        .text {
+            padding: 15px;
+        }
+
+        .icon-xmark {
+            position: absolute;
+            right: 0px;
+            padding: 10px;
+        }
+    }
+
+}

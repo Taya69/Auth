@@ -1,0 +1,79 @@
+<form [formGroup]="form" class="card form">
+    <h2 class="header">Authorization</h2>    
+
+    <div class="row input-icons">
+    <i class="fa fa-user icon-forward"></i>
+        <input id="mail" 
+        type="text" 
+        class="w-100 input-field"       
+        placeholder="enter your email"
+        formControlName="mail">        
+
+    <div *ngIf="mail.invalid && (mail.dirty || mail.touched)"
+        class="alert-danger">
+
+        <div *ngIf="mail.errors?.['required']">
+            email is required
+        </div>
+        <div *ngIf="mail.errors?.['email']">
+            email is incorrect
+        </div>
+    </div>
+    </div>
+      
+    <div class="row input-icons">
+        <i class="fa fa-lock icon-forward"></i>
+        <input id="password"
+            [type]="passwordState === 'open' ? 'text' : 'password'" 
+            placeholder="enter your password"
+            class="w-100 input-field" 
+            formControlName="password">       
+        <i *ngIf="passwordState === 'open'"
+            class="fa fa-eye icon-eye"
+            (click)="changePasswordState('close')">
+        </i>
+        <i *ngIf="passwordState === 'close'"
+            class="fa fa-eye-slash icon-eye"
+            (click)="changePasswordState('open')">
+        </i>
+         
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert alert-danger">
+    
+        <div *ngIf="password.errors?.['required']">
+            password is required
+        </div>        
+        </div>
+    </div>
+  
+   
+
+    <button (click)="login()" 
+        [disabled]="form.pristine"
+        class="mr-b-20">
+        Login
+    </button>
+
+    <div class="foot-buttons">         
+        <button (click)="signin()"
+            class="simple-button mr-r-10">
+            Sign in
+        </button> 
+    
+        <button (click)="resetPassword()"
+            class="simple-button">
+            Forgot password
+        </button>  
+    </div>
+
+    <div *ngIf="incorrectPassword"
+        class="incorrect-password alert-danger">
+        <i class="fa fa-xmark icon-xmark"
+            (click)="closeIncorrectToast()">
+        </i>
+        <div class="text">incorrect email or password</div>
+    </div>
+
+  </form>
+  

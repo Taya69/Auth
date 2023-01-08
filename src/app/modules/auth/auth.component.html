@@ -1,0 +1,25 @@
+
+<div class="header">
+  <button (click)="changeState('login')">Login</button>
+  <button (click)="changeState('signin')">Sign</button>
+</div>
+
+<div class="content-wrapper">
+  <div class="evil-martians">
+    <img src="../../../assets/Virus-PNG-Background-Image.png"
+       alt="martians1"
+       class="images image2"
+    />
+    <img src="../../../assets/Virus-PNG-High-Quality-Image.png"
+      alt="martians1"
+      class="images image1"
+    />
+
+    <app-login *ngIf="currentState === 'login'"></app-login>
+    <app-signin *ngIf="currentState === 'signin'"></app-signin>
+    <app-reset-password *ngIf="currentState === 'reset'"></app-reset-password>
+  
+  </div>
+  
+</div>
+

@@ -1,0 +1,120 @@
+<form [formGroup]="form" class="card form">
+    <h2 class="header">Registration</h2>    
+  
+        <div class="row input-icons">
+          <i class="fa fa-user icon-forward"></i>
+            <input id="mail" 
+              type="text" 
+              class="w-100 input-field"       
+              placeholder="enter your email"
+              formControlName="mail">        
+  
+          <div *ngIf="mail.invalid && (mail.dirty || mail.touched)"
+              class="alert alert-danger">
+  
+              <div *ngIf="mail.errors?.['required']">
+                  email is required
+              </div>
+              <div *ngIf="mail.errors?.['email']">
+                  email is incorrect
+              </div>
+          </div>
+        </div>
+        
+    <div class="row input-icons">
+        <i class="fa fa-lock icon-forward"></i>
+        <input
+            [type]="passwordState === 'open' ? 'text' : 'password'" 
+            placeholder="enter your password"
+            class="w-100 input-field"
+            formControlName="password">
+        <i class="fa fa-circle-info icon-info tooltip">
+            <span class="tooltiptext">
+                your password must contain at least one lowercase character, 
+                one uppercase character, one special character. 
+                The minimum length is 8 characters
+            </span>
+        </i>      
+        <i *ngIf="passwordState === 'open'"
+            class="fa fa-eye icon-eye"
+            (click)="changePasswordState('close')">
+        </i>
+        <i *ngIf="passwordState === 'close'"
+            class="fa fa-eye-slash icon-eye"
+            (click)="changePasswordState('open')">
+        </i>
+           
+  
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="alert alert-danger">
+    
+            <div *ngIf="password.errors?.['required']">
+                password is required.
+            </div>
+        </div>
+    </div>
+
+    <div class="row input-icons">
+        <i class="fa fa-lock icon-forward"></i>
+        <input
+            [type]="repeatPasswordState === 'open' ? 'text' : 'password'" 
+            placeholder="repeat your password"
+            class="w-100 input-field" 
+            formControlName="repeatPassword">        
+        <i *ngIf="repeatPasswordState === 'open'"
+            class="fa fa-eye icon-eye"
+            (click)="changerepeatPasswordState('close')">
+        </i>
+        <i *ngIf="repeatPasswordState === 'close'"
+            class="fa fa-eye-slash icon-eye"
+            (click)="changerepeatPasswordState('open')">
+        </i>
+
+        <div *ngIf="repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)"
+            class="alert alert-danger">
+    
+            <div *ngIf="repeatPassword.errors?.['required']">
+                password is required.
+            </div>
+        </div>
+
+    </div>  
+     
+  
+    <button (click)="signin()" 
+        [disabled]="form.pristine"
+        class="mr-b-20">
+        Sign in
+    </button>
+
+    <div class="foot-buttons">         
+        <button (click)="lognin()"
+            class="simple-button mr-r-10">
+            Log in
+        </button>   
+        
+    </div>
+
+    <div *ngIf="incorrectPassword"
+        class="incorrect-password alert-danger">
+        <i class="fa fa-xmark icon-xmark"
+            (click)="closeIncorrectToast()">
+        </i>
+        <div>
+            <div *ngIf="passwordInValidationState.matching"
+                class="text">
+                Passwords dont match
+            </div>
+            <div *ngIf="passwordInValidationState.pattern"
+                class="text">
+                your password must contain at least one lowercase character, 
+                one uppercase character, one special character. 
+                The minimum length is 8 characters
+            </div>
+        </div>
+       
+    </div>
+      
+    </form>
+    
+  
