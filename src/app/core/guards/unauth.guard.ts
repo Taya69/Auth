@@ -9,7 +9,6 @@ import { AuthService } from '../services/auth.service';
 export class UnauthGuard implements CanActivate {
 
     constructor(private authService: AuthService, private router: Router, private locationStrategy: LocationStrategy) {
-      console.log(locationStrategy.getBaseHref())
     }
   
     canActivate() {

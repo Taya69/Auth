@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DataService } from 'src/app/core/services/data.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router, 
     private authService: AuthService,
     private dataService: DataService,
+    private httpClient: HttpClient,
   ) { }
 
   public ngOnInit(): void {
@@ -61,5 +65,4 @@ export class LoginComponent implements OnInit {
   public get password() {
     return this.form.get('password');
   }
-
 }

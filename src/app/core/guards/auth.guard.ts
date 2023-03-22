@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
 
   
       if (this.authService.getUserToken()) {
-        console.log('true')
         return true;
       }
       
